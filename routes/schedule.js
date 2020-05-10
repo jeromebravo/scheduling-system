@@ -524,18 +524,6 @@ function adjust(arr, teachers){
     return holder;
 }
 
-function compare(a, b){
-    if(a.timeIn < b.timeIn) {
-        return - 1;
-    }
-
-    if(a.timeIn > b.timeIn) {
-        return 1;
-    }
-
-    return 0;
-}
-
 // PUSH NEW SECTION SCHEDULE
 function newSectionSchedule(section, schedule) {
     section.schedule.push(schedule);
@@ -570,22 +558,6 @@ function newRoomSchedule(room, schoolYear, schedule) {
         i++;
     }
     room.save();
-}
-
-async function test(req, res) {
-    // var room = await Rooms.findOne({roomNumber: "101"});
-    // room.schedule.push({
-    //     subject: "Science",
-    //     timeIn: "07:00",
-    //     timeOut: "08:00"
-    // });
-    // room.save();
-
-    var room = await Rooms.findOne({
-        roomNumber: "101",
-        schedule: {$elemMatch: {timeIn: {$lte: "09:30"}, timeOut: {$gt: "09:30"}, subject: {$ne: undefined}}}
-    });
-    console.log(`room = ${room}`);
 }
 
 module.exports = router;
