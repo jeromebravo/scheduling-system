@@ -454,8 +454,6 @@ async function generate(req, res){
 
                     // PUSH NEW SECTION SCHEDULE
                     newSectionSchedule(sectionCreated, sectionSchedule);
-
-                    console.log("ELSE");
                 }
 
                 j++;
@@ -479,7 +477,7 @@ async function generate(req, res){
             req.flash("success", `Success: ${success}`);
         }
 
-        res.redirect("/grade");
+        res.redirect("/");
     });
 
     
