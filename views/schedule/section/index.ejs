@@ -1,0 +1,23 @@
+<%- include("../../partials/header") %>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1>Grade <%= grade %></h1>
+            <hr>
+        </div>
+        <% sections.forEach(function(section){ %>
+            <div class="col-sm-4 col-md-3 col-lg-2 d-flex mb-4">
+                <div class="card text-center">
+                    <img class="card-img-top" src="/images/book.png">
+                    <div class="card-body">
+                        <p class="card-title">Section <%= section.section %></p>
+                        <a class="btn btn-primary" href="/schedule/searchGrade/sections/<%= section._id %>">View schedule</a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<%- include("../../partials/footer") %>

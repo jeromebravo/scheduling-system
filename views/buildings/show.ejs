@@ -1,0 +1,41 @@
+<%- include("../partials/header") %>
+
+<link rel="stylesheet" href="/stylesheets/buildings/show.css">
+
+<div class="container mt-4">
+    <div id="content">
+        <div class="row">
+            <div class="col-12 col-sm-4">
+                <a href="/buildings/<%= building._id %>/new" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Room</a>
+            </div>
+            <div class="col-12 col-sm-8">
+                <form action="/buildings" method="GET" class="form-inline float-left float-sm-right">
+                    <input class="form-control mr-3" type="text" name="search" id="search" placeholder="room number">
+                    <button class="btn btn-warning"><i class="fas fa-search"></i> Search</button>
+                </form>
+            </div>
+            
+            <div class="col-12">
+                <hr>
+            </div>
+            
+            <div class="col-12 mb-3">
+                <h1><%= building.name %></h1>
+            </div>
+
+            <% building["rooms"].forEach(function(room){ %>
+                <div class="col-sm-4 col-md-3 col-lg-2 d-flex mb-4">
+                    <div class="card text-center">
+                        <img class="card-img-top" src="/images/room.png">
+                        <div class="card-body">
+                            <p class="card-title"><%= room.roomNumber %></p>
+                            <a class="button btn btn-primary" href="/buildings/<%= building._id %>/<%= room._id %>">More Info</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

@@ -1,0 +1,52 @@
+<%- include("../partials/header") %>
+
+<link rel="stylesheet" href="/stylesheets/subjects/show.css">
+
+<div class="container">
+    <div class="row">
+        <div id="head" class="col-12">
+            <h1>Grade <%= grade.grade %></h1>
+            <hr>
+        </div>
+
+        <div class="col-12">
+            <div class="mb-3">
+                <a class="button btn btn-warning mr-3" href="/grade/<%= grade._id %>/edit"><i class="far fa-edit"></i> Edit</a>
+                <form action="/grade/<%= grade._id %>?_method=DELETE" method="POST" class="d-inline">
+                    <button id="delete" class="button btn btn-danger"><i class="far fa-trash-alt"></i> Delete</button>
+                </form>
+            </div>
+
+            <table class="table table-striped text-center">
+                <thead>
+                    <tr class="bg-primary text-white">
+                        <th>Subject</th>
+                        <th>Minutes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% grade["subjects"].forEach(function(subject){ %>
+                        <tr>
+                            <td><%= subject.name %></td>
+                            <td><%= subject.minutes %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#delete").on("click", function(){
+        var result = confirm("Delete?");
+        
+        if(result) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+</script>
+
+<%- include("../partials/footer") %>

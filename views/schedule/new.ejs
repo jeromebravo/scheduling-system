@@ -1,0 +1,23 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-6">
+            <form action="/schedule" method="POST">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="submit">Upload</button>
+                    </div>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="file" name="file" enctype="multipart/form-data" required>
+                      <label class="custom-file-label" for="file">Choose file</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/scripts/schedule.js"></script>
+
+<%- include("../partials/footer") %>

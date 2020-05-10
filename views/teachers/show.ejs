@@ -1,0 +1,73 @@
+<%- include("../partials/header") %>
+
+<link rel="stylesheet" href="/stylesheets/teachers/show.css">
+
+<div class="container mt-4">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card text-center">
+                <img class="card-img-top" src="/images/profile.png">
+                <div class="card-header">
+                    <p class="card-text"><strong><%= teacher.name %></strong></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Working hours - <strong><%= teacher.hours %></strong></li>
+                    <li class="list-group-item">Remaining minutes - <strong><%= teacher.minutes %></strong></li>
+                    <li class="list-group-item">
+                        <a class="button btn btn-warning" href="/teachers/<%= teacher._id %>/edit"><i class="far fa-edit"></i> Edit</a>
+                        <form class="d-inline" action="/teachers/<%= teacher._id %>?_method=DELETE" method="POST">
+                            <button id="delete" class="button btn btn-danger"><i class="far fa-trash-alt"></i> Delete</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <table class="table table-striped text-center">
+                <thead>
+                    <tr class="bg-primary text-white">
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% teacher["grades"].forEach(function(grade){ %>
+                        <tr>
+                            <td><%= grade %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+
+            <table class="table table-striped text-center">
+                <thead>
+                    <tr class="bg-primary text-white">
+                        <th>Subject</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% teacher["subjects"].forEach(function(subject){ %>
+                        <tr>
+                            <td><%= subject %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#delete").on("click", function(){
+        var result = confirm("Delete?");
+
+        if(result) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+</script>
+
+<%- include("../partials/footer") %>

@@ -1,0 +1,19 @@
+<%- include("../partials/header") %>
+
+<link rel="stylesheet" href="/stylesheets/buildings/new.css">
+
+<div class="container mt-4">
+    <div class="row">
+        <div id="content" class="col-8 col-md-6 col-lg-4">
+            <p class="lead text-center">Add New Building</p>
+            <form action="/buildings" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="name" id="name" placeholder="building name" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

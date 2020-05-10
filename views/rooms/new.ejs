@@ -1,0 +1,53 @@
+<%- include("../partials/header") %>
+
+<link rel="stylesheet" href="/stylesheets/rooms/new.css">
+
+<div class="container mt-4">
+    <h1>Add New Room</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-3">
+            <form action="/buildings/<%= id %>/new" method="POST">
+                <div class="form-group">
+                    <label for="grade">Grade</label>
+                    <input class="form-control" type="text" name="grade" id="grade" placeholder="grade" required>
+                </div>
+                <button type="submit" id="addGrade" class="btn btn-primary btn-block">Add</button>
+                <hr>
+            </form>
+
+            <form action="/buildings/<%= id %>" method="POST">
+                <div class="form-group">
+                    <label for="name">Room number</label>
+                    <input class="form-control" type="text" name="roomNumber" id="roomNumber" placeholder="room number" required>
+                </div>
+                <button type="submit" id="submit" class="btn btn-primary btn-block float-right mb-4">Submit</button>
+            </form>
+        </div>
+
+        <div class="col-md-9">
+            <table class="table table-striped text-center">
+                <thead>
+                    <tr class="bg-primary text-white">
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% grades.forEach(function(grade){ %>
+                        <tr>
+                            
+                            <td>
+                                <form action="/buildings/<%= id %>/new/<%= grade %>?_method=DELETE" method="POST" class="form-inline float-left">
+                                    <button class="btn btn-danger"><i class='far fa-trash-alt'></i> Delete</button>  
+                                </form>
+                                <p class="d-inline"><%= grade %></p>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

@@ -1,0 +1,25 @@
+<%- include("../partials/header") %>
+
+<link rel="stylesheet" href="/stylesheets/subjects/index.css">
+
+<div class="container mt-4">
+    <div>
+        <a href="/grade/new" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Grade</a>
+    </div>
+    <hr>
+    <div class="row">
+        <% subjects.forEach(function(subject){ %>
+            <div class="col-sm-4 col-md-3 col-lg-2 d-flex mb-4">
+                <div class="card text-center">
+                    <img class="card-img-top" src="/images/book.png">
+                    <div class="card-body">
+                        <p class="card-title">Grade <%= subject.grade %></p>
+                        <a class="btn btn-primary" href="/grade/<%= subject._id %>">View Subjects</a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

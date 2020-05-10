@@ -1,0 +1,17 @@
+h1 {
+    font-weight: 200;
+}
+
+td {
+    line-height: 200%;
+}
+
+.form-inline {
+    opacity: 0;
+    width: 0;
+    transition: linear 0.5s;
+}
+
+tr:hover .form-inline {
+    opacity: 1.0;
+}

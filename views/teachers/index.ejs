@@ -1,0 +1,35 @@
+<%- include("../partials/header") %>
+
+<div class="container mt-4">
+    <div id="content">
+        <div class="row">
+            <div class="col-12 col-sm-4">
+                <a href="/teachers/new" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Teacher</a>
+            </div>
+            <div class="col-12 col-sm-8">
+                <form action="/teachers" method="GET" class="form-inline float-left float-sm-right">
+                    <input class="form-control mr-3" type="text" name="search" id="search" placeholder="name">
+                    <button class="btn btn-warning"><i class="fas fa-search"></i> Search</button>
+                </form>
+            </div>
+            
+            <div class="col-12">
+                <hr>
+            </div>
+
+            <% teachers.forEach(function(teacher){ %>
+                <div class="col-sm-4 col-md-3 col-lg-2 d-flex mb-4">
+                    <div class="card text-center">
+                        <img class="card-img-top" src="/images/profile.png">
+                        <div class="card-body">
+                            <p class="card-title"><%= teacher.name %></p>
+                            <a class="btn btn-primary" href="/teachers/<%= teacher._id %>">More Info</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>
