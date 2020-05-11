@@ -18,6 +18,24 @@ router.get("/:id/new", async function(req, res){
     }
 });
 
+// SEARCH ROOM
+router.post("/:id/search", async function(req, res){
+    try {
+        var building = await Buildings.findById(req.params.id);
+        var rooms = await Rooms.find({building: building.name, roomNumber: req.body.room});
+
+        if(rooms.length === 0) {
+            req.flash("error", "Room not found");
+            return res.redirect(`/buildings/${req.params.id}`);
+        }
+
+        res.render("buildings/show", {building: building, rooms: rooms});
+    } catch {
+        req.flash("error", "Something went wrong");
+        res.redirect("/");
+    }
+});
+
 // ADD ONE GRADE IN ARRAY
 router.post("/:id/new", gradeExist, function(req, res){
     grades.push(req.body.grade);

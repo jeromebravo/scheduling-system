@@ -18,6 +18,18 @@ router.get("/", function(req, res){
     });
 });
 
+// SEARCH TEACHER
+router.post("/search", async function(req, res){
+    var teachers = await Teachers.find({name: req.body.name});
+
+    if(teachers.length === 0) {
+        req.flash("error", "No teacher found");
+        return res.redirect("/teachers");
+    }
+
+    res.render("teachers/index", {teachers: teachers});
+});
+
 // TEACHERS NEW ROUTE
 router.get("/new", function(req ,res){
     res.render("teachers/new", {grades: grades, subjects: subjects});

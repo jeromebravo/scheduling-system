@@ -15,6 +15,18 @@ router.get("/", function(req, res){
     });
 });
 
+// SEARCH BUILDING
+router.post("/search", async function(req, res){
+    var buildings = await Buildings.find({name: req.body.building});
+
+    if(buildings.length === 0) {
+        req.flash("error", "No building found");
+        return res.redirect("/buildings");
+    }
+
+    res.render("buildings/index", {buildings: buildings});
+});
+
 // BUILDINGS NEW ROUTE
 router.get("/new", function(req, res){
     res.render("buildings/new");
@@ -39,7 +51,7 @@ router.post("/", building.newBuildingExist, function(req, res){
 router.get("/:id", async function(req, res){
     try {
         var building = await Buildings.findById(req.params.id).populate("rooms");
-        res.render("buildings/show", {building: building});
+        res.render("buildings/show", {building: building, rooms: building.rooms});
     } catch {
         req.flash("error", "Something went wrong");
         res.redirect("/");

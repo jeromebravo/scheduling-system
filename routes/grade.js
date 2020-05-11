@@ -17,6 +17,18 @@ router.get("/", function(req, res){
     });
 });
 
+// SEARCH GRADE
+router.post("/search", async function(req ,res){
+    var subjects = await Subjects.find({grade: req.body.grade});
+
+    if(subjects.length === 0) {
+        req.flash("error", "Grade not found");
+        return res.redirect("/grade");
+    }
+
+    res.render("grade/index", {subjects: subjects});
+});
+
 // GRADE NEW ROUTE
 router.get("/new", function(req, res){
     res.render("grade/new", {subjects: subjectList});
