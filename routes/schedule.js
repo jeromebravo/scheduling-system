@@ -193,7 +193,7 @@ async function generate(req, res){
             }
 
             // ADJUST THE START OF CLASS
-            var full = await Canteen.find({numberOfSections: 6});
+            var full = await Canteen.find({numberOfSections: 6, schoolYear: schoolYear.schoolYear});
             var startTimeIn = "07:00";
             var startTimeOut = addTime(startTimeIn, 15 * Math.floor(full.length / 2));
 
