@@ -293,10 +293,12 @@ async function generate(req, res){
 
                             y++;
                         }
-                    } else {
+                    } else if(room !== undefined){
                         var availableRoom = true;
                         var room = room.split(" - ");
                         var room = await Rooms.findOne({building: room[0], roomNumber: room[1]});
+                    } else {
+                        var availableRoom = false;
                     }
                 }
 
@@ -454,6 +456,8 @@ async function generate(req, res){
 
                     // PUSH NEW SECTION SCHEDULE
                     newSectionSchedule(sectionCreated, sectionSchedule);
+
+                    console.log("ELSE");
                 }
 
                 j++;
@@ -463,6 +467,7 @@ async function generate(req, res){
                 }
             }
 
+            sectionCreated.save();
             success++;
             i++;
         }
@@ -527,7 +532,6 @@ function adjust(arr, teachers){
 // PUSH NEW SECTION SCHEDULE
 function newSectionSchedule(section, schedule) {
     section.schedule.push(schedule);
-    section.save();
 }
 
 // PUSH NEW TEACHER SCHEDULE
