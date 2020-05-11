@@ -9,8 +9,8 @@
                 <a href="/buildings/<%= building._id %>/new" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Room</a>
             </div>
             <div class="col-12 col-sm-8">
-                <form action="/buildings" method="GET" class="form-inline float-left float-sm-right">
-                    <input class="form-control mr-3" type="text" name="search" id="search" placeholder="room number">
+                <form action="/buildings/<%= building._id %>/search" method="POST" class="form-inline float-left float-sm-right">
+                    <input class="form-control mr-3" type="text" name="room" id="room" placeholder="room number">
                     <button class="btn btn-warning"><i class="fas fa-search"></i> Search</button>
                 </form>
             </div>
