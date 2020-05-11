@@ -24,7 +24,11 @@ router.get("/new", function(req, res){
 // SCHOOL YEAR CREATE ROUTE
 router.post("/", schoolYear.exist, async function(req, res){
     var schoolYear = await SchoolYear.create({schoolYear: req.body.sy});
-    
+
+    // RESET MINUTES
+    await Teachers.updateMany({}, [{$set: {minutes: {$multiply: ["$hours", 60]}}}]);
+
+    // CREATES NEW TEACHER SCHEDULE FOR NEW SCHOOL YEAR
     await Teachers.updateMany({}, 
         {
             $push: {
@@ -37,6 +41,7 @@ router.post("/", schoolYear.exist, async function(req, res){
             }
         });
     
+    // CREATES NEW ROOM SCHEDULE FOR NEW SCHOOL YEAR
     await Rooms.updateMany({}, 
         {
             $push: {
